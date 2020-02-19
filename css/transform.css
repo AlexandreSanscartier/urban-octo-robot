@@ -1,0 +1,134 @@
+/* Translate-15 */
+div.fifteen {
+    width: 50px;
+    height:50px;
+    background-color: #1abc9c;
+    margin-bottom: 10px;
+    color:white;
+    border: 2px solid #2c3e50;
+}
+
+div.move-right {
+    background-color: #3498bd;
+    transform: translateX(100px);
+}
+
+div.move-down {
+    background-color: #f1c40f;
+    transform: translateY(20px);
+}
+
+div.fifteen:hover {
+    transform: translate(20px, 20px);
+}
+
+/* Scale-16 */
+div.transformed {
+    background-color: #3498db;
+    transform: scale(2,3);
+    transform-origin: left top;
+}
+
+/* Rotate-17 */
+p.seventeen {
+    width: 50px;
+    height: 50px;
+    color:#ecf0f1;
+    background-color: #e74c3c;
+    border: 2px solid #2c3e50;
+}
+p.seventeen.transformed {
+    background-color: #9b59b6;
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+/* Transition_duration & property-19 */
+.box-19 {
+    border:none;
+    background:#9b59b6;
+    height:100px;
+    width:100px;
+    line-height: 100px;
+    text-align: center;
+    color:white;
+    transform-origin: top left;
+    font-size:17px;
+    border-radius: 20px;
+}
+
+.animated-19 {
+    transition-property: background-color, border-radius;
+    transition-duration: 5s, 1s;
+}
+
+.box-19:hover {
+    background: #e74c3c;
+    transform-origin: top left;
+    transform:scale(2);
+    border-radius: 50px;
+}
+
+/* Transition_delay & timing_function-19 */
+.box-20 {
+    background:#9b59b6;
+    height:100px;
+    width:100px;
+    line-height: 100px;
+    text-align: center;
+    color:white;
+    transform-origin: top left;
+    font-size:17px;
+    border-radius: 20px;
+}
+
+.animated-20 {
+    transition-property: transform;
+    transition-duration: 2s;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.box-20:hover {
+    transform: translateX(300px);
+}
+/*
+.animated-20 {
+    transition-property: background-color, border-radius;
+    transition-duration: 1s, 1s;
+    transition-delay: 2s, 0.5s;
+    transition-timing-function: linear;
+}
+
+
+.box-20:hover {
+    background: #e74c3c;
+    transform-origin: top left;
+    transform:scale(2);
+    border-radius: 50px;
+}
+*/
+
+/* Transition_Shorthand-22 */
+.box-22 {
+    background:#9b59b6;
+    height:100px;
+    width:100px;
+    line-height: 100px;
+    text-align: center;
+    color:white;
+    transform-origin: top left;
+    font-size:17px;
+    border-radius: 20px;
+}
+
+.animated-22 {
+    transition: transform 2s ease-out 1s,
+    background-color, 0.5s linear;
+}
+
+.box-22:hover {
+    transform: translateX(300px);
+    background-color: teal;
+}
+
+/* Excercise-24 */
