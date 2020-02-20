@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    border: 5px solid black;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.item {
+    text-align: center;
+    font-size:4em;
+    font-family: cursive;
+    width:300px;
+    font-weight: bold;
+    color:#ffffff;
+}
+
+.item-1 {
+    background-color:#ff0000;
+}
+.item-2 {
+    background-color:#ff5a00;
+}
+.item-3 {
+    background-color:#ff9a00;
+}
+.item-4 {
+    background-color:#ffce00;
+}
+.item-5 {
+    background-color: #a4c400;
+}
+.item-6 {
+    background-color: #60a917;
+}
+.item-7 {
+    background-color: #00aba9;
+}
+.item-8 {
+    background-color: #1ba1e2;
+}
+.item-9 {
+    background-color: #aa00ff;
+}
