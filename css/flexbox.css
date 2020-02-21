@@ -1,9 +1,6 @@
 .container {
     display: flex;
     border: 5px solid black;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 .item {
