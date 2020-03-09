@@ -122,7 +122,6 @@ describe("Arrays", function () {
         });
     });
 });
-
 describe("Maps", function() {
     describe("Double the integers in array", function() {
         it("Doubles the value of positive integers", function() {
@@ -319,6 +318,173 @@ describe("Filter", function() {
             // Assert
             expect(result).toEqual(jasmine.arrayContaining(expectedResult));
 
+        });
+    });
+});
+
+describe("Every & Some", function() {
+    describe("hasOddNumber", function() {
+        it("true if the array contains odd numbers", function() {
+            // Arrange
+            var integerArray = [1,2,2,2,2,2,4];
+            var expectedResult = true;
+
+            // Act
+            var result = hasOddNumber(integerArray);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("false if the array contains odd numbers", function() {
+            // Arrange
+            var integerArray = [2,2,2,2,2,2,4];
+            var expectedResult = false;
+
+            // Act
+            var result = hasOddNumber(integerArray);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+    });
+    describe("has a zero in the number", function() {
+        it("returns true if 0 is in the number", function() {
+            // Arrange
+            var integer = 3332123213101232321;
+            var expectedResult = true;
+
+            // Act
+            var result = hasAZero(integer);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("false if the array contains odd numbers", function() {
+            // Arrange
+            var integer = 1212121;
+            var expectedResult = false;
+
+            // Act
+            var result = hasAZero(integer);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+    });
+    describe("has only odd numbers in the list", function() {
+        it("returns true if there are only odd numbers in the list", function() {
+            // Arrange
+            var integerArray = [1,3,5,7];
+            var expectedResult = true;
+
+            // Act
+            var result = hasOnlyOddNumbers(integerArray);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("returns false if there are only odd numbers in the list", function() {
+            // Arrange
+            var integerArray = [1,2,3,5,7];
+            var expectedResult = false;
+
+            // Act
+            var result = hasOnlyOddNumbers(integerArray);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+    });
+    describe("Has no duplicates", function() {
+        it("returns false if there are duplicates", function() {
+            // Arrange
+            var integerArray = [1,2,3,1];
+            var expectedResult = false;
+
+            // Act
+            var result = hasNoDuplicates(integerArray);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("returns true if there are duplicates", function() {
+            // Arrange
+            var integerArray = [1,2,3];
+            var expectedResult = true;
+
+            // Act
+            var result = hasNoDuplicates(integerArray);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+    });
+    describe("Has a certain key", function() {
+        it("returns true if a certain key exists", function() {
+            // Arrange
+            var arr = [
+                {title: "Instructor", first: 'Elie', last:"Schoppik"}, 
+                {title: "Instructor", first: 'Tim', last:"Garcia", isCatOwner: true}, 
+                {title: "Instructor", first: 'Matt', last:"Lane"}, 
+                {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
+            ]
+            var expectedResult = true;
+
+            // Act
+            var result = hasCertainKey(arr, 'first');
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("returns false if the key doesn't exist", function() {
+            // Arrange
+            var arr = [
+                {title: "Instructor", first: 'Elie', last:"Schoppik"}, 
+                {title: "Instructor", first: 'Tim', last:"Garcia", isCatOwner: true}, 
+                {title: "Instructor", first: 'Matt', last:"Lane"}, 
+                {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
+            ]
+            var expectedResult = false;
+
+            // Act
+            var result = hasCertainKey(arr, 'isCatOwner');
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+    });
+    describe("Has a certain value", function() {
+        it("returns true if a certain value exists", function() {
+            // Arrange
+            var arr = [
+                {title: "Instructor", first: 'Elie', last:"Schoppik"}, 
+                {title: "Instructor", first: 'Tim', last:"Garcia", isCatOwner: true}, 
+                {title: "Instructor", first: 'Matt', last:"Lane"}, 
+                {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
+            ]
+            var expectedResult = true;
+
+            // Act
+            var result = hasCertainValue(arr, 'Instructor');
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("returns false if the not all objects contain that value", function() {
+            // Arrange
+            var arr = [
+                {title: "Instructor", first: 'Elie', last:"Schoppik"}, 
+                {title: "Instructor", first: 'Tim', last:"Garcia", isCatOwner: true}, 
+                {title: "Instructor", first: 'Matt', last:"Lane"}, 
+                {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
+            ]
+            var expectedResult = false;
+
+            // Act
+            var result = hasCertainValue(arr, 'Elie');
+
+            // Assert
+            expect(result).toEqual(expectedResult);
         });
     });
 });
