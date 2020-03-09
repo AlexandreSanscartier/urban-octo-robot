@@ -23,7 +23,7 @@ function showFirstAndLast(arr) {
     return newArr;
 }
 
-function addKeyAndValue(arr, key, value) {
+function addKeyAndValueForEach(arr, key, value) {
     var newArr = [];
     arr.forEach(function (val, index, array) {
         newArr.push({
@@ -34,7 +34,7 @@ function addKeyAndValue(arr, key, value) {
     return newArr;
 }
 
-function vowelCount(str) {
+function vowelCountForEach(str) {
     var dict = {};
     var vowelArray = ["a", "e", "i", "o", "u"];
     var strArray = str.split("");
@@ -193,44 +193,36 @@ Examples:
 */
 
 function extractValue(arr, key){
-    
+    return arr.reduce(function(accumulator, nextValue, index, array) {
+        accumulator.push(nextValue[key]);
+        return accumulator;
+    }, []);
 }
-
-
-/*
-Write a function called vowelCount which accepts a string and returns an object with the keys as the vowel and the values as the number of times the vowel appears in the string. This function should be case insensitive so a lowercase letter and uppercase letter should count
-
-Examples:
-    vowelCount('Elie') // {e:2,i:1};
-    vowelCount('Tim') // {i:1};
-    vowelCount('Matt') // {a:1})
-    vowelCount('hmmm') // {};
-    vowelCount('I Am awesome and so are you') // {i: 1, a: 4, e: 3, o: 3, u: 1};
-*/
 
 function vowelCount(str){
-   
+    var vowelsArray = "aeiou".split("");
+    return str.toLowerCase().split("").reduce(function(accumulator, nextValue, index, array) {
+        nextValue = nextValue.trim();
+        if(vowelsArray.includes(nextValue)) {
+            if(nextValue in accumulator) {
+                accumulator[nextValue]++;
+            } else {
+                accumulator[nextValue] = 1;
+            }
+        }
+        return accumulator;
+    }, {});
 }
-
-/*
-Write a function called addKeyAndValue which accepts an array of objects and returns the array of objects passed to it with each object now including the key and value passed to the function.
-
-Examples:
-    var arr = [{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}];
-    
-    addKeyAndValue(arr, 'title', 'Instructor') // 
-      [
-        {title: 'Instructor', name: 'Elie'}, 
-        {title: 'Instructor', name: 'Tim'}, 
-        {title: 'Instructor', name: 'Matt'}, 
-        {title: 'Instructor', name: 'Colt'}
-       ]
-*/
 
 function addKeyAndValue(arr, key, value){
-    
+    return arr.reduce(function(accumulator, nextValue, index, array) {
+        accumulator.push({
+            [key] : value,
+            name : nextValue.name,
+        });
+        return accumulator;
+    }, []);
 }
-
 
 /*
 Write a function called partition which accepts an array and a callback and returns an array with two arrays inside of it. The partition function should run the callback function on each value in the array and if the result of the callback function at that specific value is true, the value should be placed in the first subarray. If the result of the callback function at that specific value is false, the value should be placed in the second subarray. 
@@ -255,5 +247,19 @@ Examples:
 */
 
 function partition(arr, callback){
-    
+    return arr.reduce(function(accumulator, nextValue) {
+        console.log(accumulator);
+        if(accumulator.length === 0) {
+            accumulator.push([]);
+            accumulator.push([]);
+        }
+
+        if(callback(nextValue)) {
+            accumulator[0].push(nextValue);
+        } else {
+            accumulator[1].push(nextValue);
+        }
+
+        return accumulator;
+    }, []);
 }

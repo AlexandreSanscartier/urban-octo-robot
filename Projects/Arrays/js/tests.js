@@ -80,7 +80,7 @@ describe("Arrays", function () {
             var resultingArr = [{ name: 'Elie', title: 'instructor' }, { name: 'Tim', title: 'instructor' }, { name: 'Matt', title: 'instructor' }, { name: 'Colt', title: 'instructor' }];
 
             // Act
-            var result = addKeyAndValue(namesArray, key, value);
+            var result = addKeyAndValueForEach(namesArray, key, value);
 
             // Assert
             expect(result).toEqual(jasmine.arrayContaining(resultingArr));
@@ -93,7 +93,7 @@ describe("Arrays", function () {
             var correctResult = {};
 
             // Act
-            var result = vowelCount(sentence);
+            var result = vowelCountForEach(sentence);
 
             // Assert
             expect(result).toEqual(correctResult);
@@ -104,7 +104,7 @@ describe("Arrays", function () {
             var correctResult = {i:1};
 
             // Act
-            var result = vowelCount(sentence);
+            var result = vowelCountForEach(sentence);
 
             // Assert
             expect(result).toEqual(correctResult);
@@ -115,7 +115,7 @@ describe("Arrays", function () {
             var correctResult = { i: 1, a: 4, e: 3, o: 3, u: 1 };
 
             // Act
-            var result = vowelCount(sentence);
+            var result = vowelCountForEach(sentence);
 
             // Assert
             expect(result).toEqual(correctResult);
@@ -489,6 +489,114 @@ describe("Every & Some", function() {
 
             // Assert
             expect(result).toEqual(expectedResult);
+        });
+    });
+});
+/**
+ * /*
+Write a function called extractValue which accepts an array of objects and a key and returns a new array with the value of each object at the key.
+
+Examples:
+    var arr = [{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}]
+    extractValue(arr,'name') // ['Elie', 'Tim', 'Matt', 'Colt']
+*/
+
+describe("Reduce", function() {
+    describe("extractValue", function() {
+        it("extratcs the values from the array object with the given key", function() {
+            // Arrange
+            var arr = [{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}]
+            var expectedResult = ['Elie', 'Tim', 'Matt', 'Colt'];
+
+            // Act
+            var result = extractValue(arr,'name');
+
+            // Assert
+            expect(result).toEqual(jasmine.arrayContaining(expectedResult));
+        });
+    });
+    describe("vowel count", function() {
+        it("Counts the number of vowels when no vowels", function () {
+            // Arrange
+            var sentence = 'hmmm';
+            var expectedResult = {};
+
+            // Act
+            var result = vowelCount(sentence);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("Counts the number of vowels when only one vowel", function () {
+            // Arrange
+            var sentence = 'Tim';
+            var expectedResult = {i:1};
+
+            // Act
+            var result = vowelCount(sentence);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+        it("Counts the number of vowels with a combination of upper and lowercase", function () {
+            // Arrange
+            var sentence = 'I Am awesome and so are you';
+            var expectedResult = { i: 1, a: 4, e: 3, o: 3, u: 1 };
+
+            // Act
+            var result = vowelCount(sentence);
+
+            // Assert
+            expect(result).toEqual(expectedResult);
+        });
+    });
+    describe("AddKeyAndValue", function() {
+        it("Adds the specified key and value to the names array", function () {
+            // Arrange
+            var namesArray = [{ name: 'Elie' }, { name: 'Tim' }, { name: 'Matt' }, { name: 'Colt' }];
+            var key = 'title';
+            var value = 'instructor';
+            var resultingArr = [{ name: 'Elie', title: 'instructor' }, { name: 'Tim', title: 'instructor' }, { name: 'Matt', title: 'instructor' }, { name: 'Colt', title: 'instructor' }];
+
+            // Act
+            var result = addKeyAndValue(namesArray, key, value);
+
+            // Assert
+            expect(result).toEqual(jasmine.arrayContaining(resultingArr));
+        });
+    });
+    describe("Partition reduce function", function() {
+        it("should partition even numbers from the array", function() {
+            // Arrange
+            var arr = [1,2,3,4,5,6,7,8];
+            var callback = function isEven(val){
+                return val % 2 === 0;
+            };
+            var oddArray = [1,3,5,7];
+            var evenArray = [2,4,6,8];
+
+            // Act
+            var result = partition(arr, callback);
+
+            // Assert
+            expect(result[0]).toEqual(jasmine.arrayContaining(evenArray));
+            expect(result[1]).toEqual(jasmine.arrayContaining(oddArray));
+        });
+        it("should partition names that are longer than 3 characters", function() {
+            // Arrange
+            var names = ['Elie', 'Colt', 'Tim', 'Matt'];
+            var callback = function isLongerThanThreeCharacters(val){
+                return val.length > 3;
+            };
+            var namesLongerThanThree = ['Elie', 'Colt', 'Matt'];
+            var namesThreeOrShorter = ['Tim'];
+
+            // Act
+            var result = partition(names, callback);
+
+            // Assert
+            expect(result[0]).toEqual(jasmine.arrayContaining(namesLongerThanThree));
+            expect(result[1]).toEqual(jasmine.arrayContaining(namesThreeOrShorter));
         });
     });
 });
