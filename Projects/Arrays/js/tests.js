@@ -462,10 +462,12 @@ describe("Every & Some", function() {
                 {title: "Instructor", first: 'Matt', last:"Lane"}, 
                 {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
             ]
+            key = 'title';
+            value = 'Instructor';
             var expectedResult = true;
 
             // Act
-            var result = hasCertainValue(arr, 'Instructor');
+            var result = hasCertainValue(arr, key, value);
 
             // Assert
             expect(result).toEqual(expectedResult);
@@ -478,10 +480,12 @@ describe("Every & Some", function() {
                 {title: "Instructor", first: 'Matt', last:"Lane"}, 
                 {title: "Instructor", first: 'Colt', last:"Steele", isCatOwner: true}
             ]
+            key = 'first';
+            value = 'Elie';
             var expectedResult = false;
 
             // Act
-            var result = hasCertainValue(arr, 'Elie');
+            var result = hasCertainValue(arr, key, value);
 
             // Assert
             expect(result).toEqual(expectedResult);

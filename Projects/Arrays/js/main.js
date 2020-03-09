@@ -176,15 +176,8 @@ function hasCertainKey(arr, key) {
     });
 }
 
-function hasCertainValue(arr, searchValue) { 
+function hasCertainValue(arr, key, searchValue) { 
     return arr.every(function (value, index, array) {
-        var found = false;
-        Object.keys(value).forEach(function(key) {
-            if(value[key] === searchValue) {
-                found = true;
-            }
-        });
-
-        return found;
+        return value[key] === searchValue;
     });
 }
