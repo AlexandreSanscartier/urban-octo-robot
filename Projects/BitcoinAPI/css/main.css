@@ -1,0 +1,24 @@
+body, body * {
+    padding:0;
+    margin:0;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+section * {
+    margin-bottom:10px;
+}
+
+#current-price {
+    font-weight: bold;
+    color: #057718;
+}
+
+#last-refresh {
+    font-weight: bold;  
+    font-style: italic;
+}

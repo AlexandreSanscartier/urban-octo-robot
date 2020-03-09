@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CAT API - IMAGE</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- <link rel="icon" href="images/favicon.png" /> -->
+  </head>
+
+  <body>
+    <section class="container">
+        <h1>Welcome to random cat pictures</h1>
+        <img id="cat-photo" src="https://cdn2.thecatapi.com/images/pN0DBNmBu.false" alt="" />
+        <button id="btn">Get Random Cat!</button>
+    </section>
+
+    <script>
+        var button = document.querySelector("#btn");
+        var image_html = document.querySelector("#cat-photo");
+
+        btn.addEventListener("click", function() {
+           var XHR = new XMLHttpRequest();
+
+            XHR.onreadystatechange = function() {
+                if(XHR.readyState === 4 && XHR.status === 200) {
+                    var response = XHR.responseText;
+                    var data = JSON.parse(response);
+                    var image_url = data[0].url;
+                    image_html.src = image_url;
+                }
+            }
+
+           XHR.open("GET","https://api.thecatapi.com/v1/images/search");
+           XHR.send();
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BITCOIN - API</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- <link rel="icon" href="images/favicon.png" /> -->
+  </head>
+
+  <body>
+    <section class="container">
+        <h1>Bitcoin price</h1>
+        <p>Current price of bitcoin: <span id="current-price"></span></p>
+        <p>Last refresh <span id="last-refresh">12:57pm</span></p>
+    </section>
+
+    <script>
+        var button = document.querySelector("#btn");
+        var lastRefresh = document.querySelector("#last-refresh");
+        var currentPrice = document.querySelector("#current-price");
+
+        var dateTimeNow = Date(Date.now()).toString();
+        lastRefresh.innerHTML = dateTimeNow;
+
+        var callback = (function() {
+           var XHR = new XMLHttpRequest();
+
+            XHR.onreadystatechange = function() {
+                if(XHR.readyState === 4 && XHR.status === 200) {
+                    var response = XHR.responseText;
+                    var data = JSON.parse(response);
+
+                    console.log(data);
+
+                    var usd = data.bpi.USD;
+                    var gbp = data.bpi.GBP;
+                    var eur = data.bpi.EUR;
+
+                    dateTimeNow = Date(Date.now()).toString();
+                    lastRefresh.innerHTML = dateTimeNow;
+                    currentPrice.innerHTML = usd.rate + " " + usd.code;
+                }
+            }
+
+           XHR.open("GET","https://api.coindesk.com/v1/bpi/currentprice.json");
+           XHR.send();
+
+           clearInterval(intervalID);
+        });
+
+        callback();
+
+        var intervalID = setInterval(callback, 1000);
+    </script>
+  </body>
+</html>

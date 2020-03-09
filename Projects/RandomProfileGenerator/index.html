@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>RANDOM USER PROFILE GENERATOR</title>
+
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- <link rel="icon" href="images/favicon.png" /> -->
+  </head>
+
+  <body>
+    <h1 class="title"> Random User Generator</h1>
+    <div class="user-profile">
+      <img id="avatar" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/kit-harington-hair-jon-snow-1569167827.jpg?crop=0.439xw:0.878xh;0.0221xw,0.0306xh&resize=480:*" />
+        <div id="fullname">Jon Snow</div>
+      <div id="username">
+        kingofnorth
+      </div>
+        <div class="description">
+          <div>Email: <span id="email">jon@hotmail.com</span></div>
+          <div>City: <span id="city">Winterfell</span></div>
+      </div>
+      <div class="footer">
+        <button id="btn">Next User!</button>
+     </div>
+    </div>
+
+    <script>
+        var url = "https://randomuser.me/api/";
+        var btn = document.querySelector("#btn");
+
+        var avatar = document.querySelector("#avatar");
+        var fullname = document.querySelector("#fullname");
+        var username = document.querySelector("#username");
+        var email = document.querySelector("#email");
+        var city = document.querySelector("#city");
+
+        btn.addEventListener("click", function() {
+          fetch(url)
+            .then(handleErrors)
+            .then(parseJSON)
+            .then(updateProfile)
+            .catch(printError)
+        });
+
+        function handleErrors(request) {
+          if(!request.ok) {
+            throw Error(request.status);
+          }
+          return request;
+        }
+
+        function parseJSON(request) {
+          return request.json();
+        }
+
+        function updateProfile(jsonData) {
+          var results = jsonData.results[0];
+          console.log(results);
+          avatar.src = results.picture.medium;
+          fullname.textContent = results.name.first + " " + results.name.last;
+          username.textContent = results.login.username;
+          email.textContent = results.email;
+          city.textContent = results.location.city;
+        }
+
+        function printError(error) {
+          console.log(error);
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+body, body * {
+    padding:0;
+    margin:0;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+img {
+    height:300px;
+}
